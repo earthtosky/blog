@@ -13,9 +13,11 @@
     </div>
 
     @if ($message = Session::get('success'))
+    <div x-data="{show: true}" x-init="setTimeout(() => show = false, 3000)" x-show="show">
         <div class="alert alert-success">
             <p>{{ $message }}</p>
         </div>
+    </div>
     @endif
 
     <table class="table table-bordered">
@@ -42,7 +44,7 @@
                     @csrf
                     @method('DELETE')
 
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="submit" onclick="return confirm('{{ __('Are you sure you want to delete?') }}')" class="btn btn-danger">Delete</button>
                 </form>
             </td>
         </tr>
